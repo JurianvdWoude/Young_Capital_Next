@@ -3,3 +3,4 @@ eieren
 suiker
 boter
 citroen
+appels
