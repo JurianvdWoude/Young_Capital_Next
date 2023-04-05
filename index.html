@@ -61,6 +61,31 @@
 				document.getElementById("et_nav_search_text").innerHTML = text;
 				history.replaceState(null, null, url);
 			}
+
+			function getDarkmodeSelection(sel) {
+				var darkModeOption = sel.options[sel.selectedIndex].value;
+				var recipe = document.getElementsByClassName("et_recipe");
+				var h2 = document.getElementsByTagName("h2");
+				if(recipe && h2) {
+					if(darkModeOption == "et_nav_darkmode_light") {
+						for (let i = 0; i < recipe.length; i++) {
+							recipe[i].style.backgroundColor = "white";
+							recipe[i].style.color = "black";
+						}
+						for (let i = 0; i < h2.length; i++) {
+							h2[i].style.color = "#172d13";
+						}
+					} else {
+						for (let i = 0; i < recipe.length; i++) {
+								recipe[i].style.backgroundColor = "#172d13";
+								recipe[i].style.color = "white";
+						}
+						for (let i = 0; i < h2.length; i++) {
+							h2[i].style.color = "white";
+						}
+					}
+				}
+			}
 		</script>
 
 		<header>
@@ -69,9 +94,10 @@
 				<h1>Jurian's recepten</h1>
 			</div>
 		</header>
+
 		<nav>
-			<div class="et_nav">
-				<div class="et_nav_links">
+			<div class="et_nav container">
+				<div class="et_nav_links inner">
 					<table>
 						<tr>
 							<th><b>Hoofdgerechten</b></th>
@@ -99,9 +125,9 @@
 						</tr>
 					</table>
 				</div>
-				<br/>
-				<br/>
-				<div class="et_nav_search" id="et_nav_search">
+				<!-- <br/>
+				<br/> -->
+				<div class="et_nav_search inner" id="et_nav_search">
 					<form id="et_nav_search_form">
 						<label for="et_search_input">Zoek naar recepten:</label>
 						<input 
@@ -110,34 +136,36 @@
 							placeholder="Typ uw input hier in"
 							size="30"
 						/>
-						<input type="button" onclick="searchForRecipes()" value="Zoek"/>
+						<input class="et_nav_search_submit" type="button" onclick="searchForRecipes()" value="Zoek"/>
 					</form>
 					<div class="et_nav_search_prompt"><i>U zocht naar:</i></div>
 					<div id="et_nav_search_text"></div>
 				</div>
+
+				<div class="et_nav_darkmode inner">
+					<form class="et_nav_darkmode_form">
+						<label for="et_nav_darkmode_form">Turn on dark mode</label>
+						<select name="et_nav_darkmode_options" id="et_nav_darkmode_options" class="et_nav_darkmode_options" onChange="getDarkmodeSelection(this)">
+							<option value="et_nav_darkmode_light" class="et_nav_darkmode_light">Light</option>
+							<option value="et_nav_darkmode_dark" class="et_nav_darkmode_dark">Dark</option>
+						</select>
+					</form>
+				</div>
 			</div>
 			
-			<div>
-				<form>
-					<label for="et_nav_darkmode">Turn on dark mode</label>
-					<select name="et_nav_darkmode_options" id="et_nav_darkmode_options">
-						<option value="et_nav_darkmode_light">Light</option>
-						<option value="et_nav_darkmode_dark">Dark</option>
-					</select>
-				</form>
-			</div>
+			
 		</nav>
 
 		<br/>
-<hr/>
+
 <br/>
 <div class="et_recipes">
 	<table>
 		<tr>
 			<td>
-				<div class="et_rec_bruine_bonen" id="et_rec_bruine_bonen">
+				<div class="et_rec_bruine_bonen et_recipe" id="et_rec_bruine_bonen">
 					<h2>Bruine Bonen</h2>
-					<img src="images/bruine_bonen.jpg" width="400"/>
+					<img src="images/bruine_bonen.jpg" />
 					<ul>
 						<li>1 grote pot bruine bonen</li>
 						<li>500g kip</li>
@@ -172,9 +200,9 @@
 				</div>
 			</td>
 			<td>
-				<div class="et_rec_bakkeljauw" id="et_rec_bakkeljauw">
+				<div class="et_rec_bakkeljauw et_recipe" id="et_rec_bakkeljauw">
 					<h2>Bakkeljauw</h2>
-					<img src="images/bakkeljauw.jpg" width="400"/>
+					<img src="images/bakkeljauw.jpg" />
 					<ul>
 						<li>500g bakkeljauw</li>
 						<li>1 grote ui</li>
@@ -197,9 +225,9 @@
 				</div>
 			</td>
 			<td>
-				<div class="et_rec_pompoensoep" id="et_rec_pompoensoep">
+				<div class="et_rec_pompoensoep et_recipe" id="et_rec_pompoensoep">
 					<h2>Pompoensoep</h2>
-					<img src="images/pompoensoep.jpg" width="400"/>
+					<img src="images/pompoensoep.jpg" />
 					<ul>
 						<li>1 pond soepvlees</li>
 						<li>2 stengels selderij</li>
@@ -230,9 +258,9 @@
 				</div>
 			</td>
 			<td>
-				<div class="et_rec_citroencake" id="et_rec_citroencake">
+				<div class="et_rec_citroencake et_recipe" id="et_rec_citroencake">
 					<h2>Citroencake</h2>
-					<img src="images/citroencake.jpg" width="400"/>
+					<img src="images/citroencake.jpg" />
 					<ul>
 						<li>6 eieren</li>
 						<li>300g boter</li>
@@ -257,11 +285,13 @@
 				</div>
 			</td>
 		</tr>
+
+
 		<tr>
 			<td>
-				<div class="et_rec_biefstuk" id="et_rec_biefstuk">
+				<div class="et_rec_biefstuk et_recipe" id="et_rec_biefstuk">
 					<h2>Biefstuk</h2>
-					<img src="images/biefstuk.jpg" width="400"/>
+					<img src="images/biefstuk.jpg" />
 					<ul>
 						<li>400g kogel- of runderbiefstuk</li>
 						<li>1 grote ui in ringen gesneden</li>
@@ -284,9 +314,9 @@
 				</div>
 			</td>
 			<td>
-				<div class="et_rec_visschotel" id="et_rec_visschotel">
+				<div class="et_rec_visschotel et_recipe" id="et_rec_visschotel">
 					<h2>Visschotel</h2>
-					<img src="images/visschotel.jpg" width="400"/>
+					<img src="images/visschotel.jpg" />
 					<br/>
 					<ul>
 						<li>1kg vis</li>
@@ -322,9 +352,9 @@
 				</div>
 			</td>
 			<td>
-				<div class="et_rec_zalmpastei" id="et_rec_zalmpastei">
+				<div class="et_rec_zalmpastei et_recipe" id="et_rec_zalmpastei">
 					<h2>Zalmpastei</h2>
-					<img src="images/zalmpastei.jpg" width="400"/>
+					<img src="images/zalmpastei.jpg" />
 					<ul>
 						<u>Voor het deeg:</u>
 						<li>200g bloem</li>
