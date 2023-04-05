@@ -1,56 +1,134 @@
-<div class="et_title">
-	<br />
-	<h1>Jurian's recepten</h1>
-</div>
 
-<div class="et_nav">
-	<div class="et_nav_links">
-		<table>
-			<tr>
-				<th><b>Hoofdgerechten</b></th>
-				<th><b>Visgerechten</b></th>
-				<th><b>Soepen</b></th>
-				<th><b>Lekkernijen</b></th>
-			</tr>
-			<tr>
-				<td><a href="#et_rec_bruine_bonen">Bruine Bonen</a></td>
-				<td><a href="#et_rec_bakkeljauw">Bakkeljauw</a></td>
-				<td><a href="#et_rec_pompoensoep">Pompoensoep</a></td>
-				<td><a href="#et_rec_citroencake">Citroencake</a></td>
-			</tr>
-			<tr>
-				<td><a href="#et_rec_biefstuk">Biefstuk</a></td>
-				<td><a href="#et_rec_visschotel">Visschotel</a></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><a href="#et_rec_zalmpastei">Zalmpastei</a></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-	</div>
-	<br/>
-	<br/>
-	<div class="et_nav_search" id="et_nav_search">
-		<form id="et_nav_search_form">
-			<label for="et_search_input">Zoek naar recepten:</label>
-			<input 
-				type="search" 
-				id="et_nav_search_input" 
-				placeholder="Typ uw input hier in"
-				size="30"
-			/>
-			<input type="button" onclick="searchForRecipes()" value="Zoek"/>
-		</form>
-		<div class="et_nav_search_prompt"><i>U zocht naar:</i></div>
-		<div id="et_nav_search_text"></div>
-	</div>
-</div>
 
-<br/>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+		<script>
+			function searchForRecipes() {
+				var search = document.getElementById("et_nav_search_form")
+				var text = "";
+				var url = location.href;
+				if(
+					!search ||
+					!search.elements[0] || 
+					!search.elements[0].value
+				) {
+					text = "Voer aub iets in de zoekbalk om te beginnen met zoeken";
+				} else {
+					var searchInput = search.elements[0].value;
+					switch(searchInput.toLowerCase()) {
+						case "bruine bonen":
+							text = "Bruine Bonen";
+							location.href = "#et_rec_bruine_bonen";
+							break;
+						case "bakkeljauw":
+							text = "Bakkeljauw";
+							location.href = "#et_rec_bakkeljauw";
+							break;
+						case "pompoensoep": 
+							text = "Pompoensoep";
+							location.href = "#et_rec_pompoensoep";
+							break;
+						case "citroencake": 
+							text = "Citroencake";
+							location.href = "#et_rec_citroencake";
+							break;
+						case "biefstuk":
+							text = "Biefstuk";
+							location.href = "#et_rec_biefstuk";
+							break;
+						case "visschotel":
+							text = "Visschotel"; 
+							location.href = "#et_rec_visschotel";
+							break; 
+						case "zalmpastei": 
+							text = "Zalmpastei";
+							location.href = "#et_rec_zalmpastei";
+							break;
+						default:
+							text = "Kan het recept niet vinden";
+							location.href = "#";
+							break;
+					}
+				}
+				document.getElementById("et_nav_search_text").innerHTML = text;
+				history.replaceState(null, null, url);
+			}
+		</script>
+
+		<header>
+			<div class="et_title">
+				<br />
+				<h1>Jurian's recepten</h1>
+			</div>
+		</header>
+		<nav>
+			<div class="et_nav">
+				<div class="et_nav_links">
+					<table>
+						<tr>
+							<th><b>Hoofdgerechten</b></th>
+							<th><b>Visgerechten</b></th>
+							<th><b>Soepen</b></th>
+							<th><b>Lekkernijen</b></th>
+						</tr>
+						<tr>
+							<td><a href="#et_rec_bruine_bonen">Bruine Bonen</a></td>
+							<td><a href="#et_rec_bakkeljauw">Bakkeljauw</a></td>
+							<td><a href="#et_rec_pompoensoep">Pompoensoep</a></td>
+							<td><a href="#et_rec_citroencake">Citroencake</a></td>
+						</tr>
+						<tr>
+							<td><a href="#et_rec_biefstuk">Biefstuk</a></td>
+							<td><a href="#et_rec_visschotel">Visschotel</a></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><a href="#et_rec_zalmpastei">Zalmpastei</a></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<br/>
+				<br/>
+				<div class="et_nav_search" id="et_nav_search">
+					<form id="et_nav_search_form">
+						<label for="et_search_input">Zoek naar recepten:</label>
+						<input 
+							type="search" 
+							id="et_nav_search_input" 
+							placeholder="Typ uw input hier in"
+							size="30"
+						/>
+						<input type="button" onclick="searchForRecipes()" value="Zoek"/>
+					</form>
+					<div class="et_nav_search_prompt"><i>U zocht naar:</i></div>
+					<div id="et_nav_search_text"></div>
+				</div>
+			</div>
+			
+			<div>
+				<form>
+					<label for="et_nav_darkmode">Turn on dark mode</label>
+					<select name="et_nav_darkmode_options" id="et_nav_darkmode_options">
+						<option value="et_nav_darkmode_light">Light</option>
+						<option value="et_nav_darkmode_dark">Dark</option>
+					</select>
+				</form>
+			</div>
+		</nav>
+
+		<br/>
 <hr/>
 <br/>
 <div class="et_recipes">
@@ -287,56 +365,14 @@
 	</table>
 </div>
 
+  </body>
+</html>
 
-<script>
-	function searchForRecipes() {
-		var search = document.getElementById("et_nav_search_form")
-		var text = "";
-		var url = location.href;
-		if(
-			!search ||
-			!search.elements[0] || 
-			!search.elements[0].value
-		) {
-			text = "Voer aub iets in de zoekbalk om te beginnen met zoeken";
-		} else {
-			var searchInput = search.elements[0].value;
-			switch(searchInput.toLowerCase()) {
-				case "bruine bonen":
-					text = "Bruine Bonen";
-					location.href = "#et_rec_bruine_bonen";
-					break;
-				case "bakkeljauw":
-					text = "Bakkeljauw";
-					location.href = "#et_rec_bakkeljauw";
-					break;
-				case "pompoensoep": 
-					text = "Pompoensoep";
-					location.href = "#et_rec_pompoensoep";
-					break;
-				case "citroencake": 
-					text = "Citroencake";
-					location.href = "#et_rec_citroencake";
-					break;
-				case "biefstuk":
-					text = "Biefstuk";
-					location.href = "#et_rec_biefstuk";
-					break;
-				case "visschotel":
-					text = "Visschotel"; 
-					location.href = "#et_rec_visschotel";
-					break; 
-				case "zalmpastei": 
-					text = "Zalmpastei";
-					location.href = "#et_rec_zalmpastei";
-					break;
-				default:
-					text = "Kan het recept niet vinden";
-					location.href = "#";
-					break;
-			}
-		}
-		document.getElementById("et_nav_search_text").innerHTML = text;
-		history.replaceState(null, null, url);
-	}
-</script>
+
+
+
+
+
+
+
+
