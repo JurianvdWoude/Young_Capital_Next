@@ -76,6 +76,9 @@ i {
 
 .et_recipe img {
 	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 
 .container {
